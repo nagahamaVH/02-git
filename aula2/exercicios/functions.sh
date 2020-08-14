@@ -23,3 +23,14 @@ function download_datasets {
         exit 1
     fi
 }
+
+function count_delayed_flights {
+    # $1 filename
+
+    if [[ -f $1 ]]; then
+        count=$(awk -F, '{ if(($15 > 0) || ($16 > 0)) {print} }' ./data/2006.csv | wc -l)
+        echo "Número de voos atrasados: $count"
+    else
+        echo "O arquivo não existe"
+    fi
+}
