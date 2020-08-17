@@ -2,10 +2,10 @@
 
 # return list of airports with delayed flights
 if [[ -f $1 ]]; then
-    origin=$(awk -F, '{ if($15 > 0) {print} }' $1 | awk -F, '{print $17}' | sort | uniq)
-    dest=$(awk -F, '{ if($16 > 0) {print} }' $1 | awk -F, '{print $18}' | sort | uniq)
+    origin=$(awk -F, '{ if($15 > 0) {print} }' $1 | awk -F, '{print $17}' | tail -n +2 | sort | uniq)
+    dest=$(awk -F, '{ if($16 > 0) {print} }' $1 | awk -F, '{print $18}' | tail -n +2 | sort | uniq)
 
-    airports=$(echo "${origin}${dest}" | sort | uniq)
+    airports=$(echo -e "${origin}\n${dest}" | sort | uniq)
 
     echo "Aeroportos com voos atrasados:"
 

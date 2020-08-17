@@ -2,7 +2,7 @@
 
 # return list of companies with delayed flights
 if [[ -f $1 ]]; then
-    companies=$(awk -F, '{ if(($15 > 0) || ($16 > 0)) {print} }' $1 | awk -F, '{print $9}' | sort | uniq)
+    companies=$(awk -F, '{ if(($15 > 0) || ($16 > 0)) {print} }' $1 | awk -F, '{print $9}' | tail -n +2 | sort | uniq)
     
     echo "Companhias com voos atrasados:"
 
