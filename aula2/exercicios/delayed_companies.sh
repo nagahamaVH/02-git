@@ -13,7 +13,7 @@ if [[ -f $1 ]]; then
         comp_quoted+="$comp"
         comp_quoted+='"'
 
-        companies_name=$(awk -F, -v var="$comp_quoted" '{if ($1 == var) {print $2} }' ./data/carriers.csv | head)
+        companies_name=$(awk -F, -v var="$comp_quoted" '{if ($1 == var) {print $2} }' ./data/carriers.csv)
 
         echo "$companies_name"
     done
