@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 function download_datasets {
     if [[ -d "$1" ]]; then
         echo "Baixando arquivo de 2006"
@@ -28,9 +27,22 @@ function count_delayed_flights {
     # $1 filename
 
     if [[ -f $1 ]]; then
-        count=$(awk -F, '{ if(($15 > 0) || ($16 > 0)) {print} }' ./data/2006.csv | wc -l)
+        count=$(awk -F, '{ if(($15 > 0) || ($16 > 0)) {print} }' $1 | wc -l)
         echo "Número de voos atrasados: $count"
     else
         echo "O arquivo não existe"
+    fi
+}
+
+function download_sup_data {
+    if [[ -d "$1" ]]; then
+        echo "Baixando 'airports.csv'"
+        wget -q 'http://stat-computing.org/dataexpo/2009/carriers.csv' -O "${1}/airports.csv"
+        echo "Baixando 'carriers.csv'"
+        wget -q 'http://stat-computing.org/dataexpo/2009/airports.csv' -O "${1}/carriers.csv"
+        exit 0
+    else
+        echo "Destino do download não existe"
+        exit 1
     fi
 }
