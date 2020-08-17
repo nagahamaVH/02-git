@@ -36,10 +36,10 @@ function count_delayed_flights {
 
 function download_sup_data {
     if [[ -d "$1" ]]; then
-        echo "Baixando 'airports.csv'"
-        wget -q 'http://stat-computing.org/dataexpo/2009/carriers.csv' -O "${1}/airports.csv"
         echo "Baixando 'carriers.csv'"
-        wget -q 'http://stat-computing.org/dataexpo/2009/airports.csv' -O "${1}/carriers.csv"
+        wget -q 'http://stat-computing.org/dataexpo/2009/carriers.csv' -O "${1}/carriers.csv"
+        echo "Baixando 'airports.csv'"
+        wget -q 'http://stat-computing.org/dataexpo/2009/airports.csv' -O "${1}/airports.csv"
         exit 0
     else
         echo "Destino do download não existe"
